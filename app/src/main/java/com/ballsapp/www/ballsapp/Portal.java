@@ -1,26 +1,14 @@
 package com.ballsapp.www.ballsapp;
 
-import com.ballsapp.www.ballsapp.util.SystemUiHider;
-
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
-import android.view.KeyEvent;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.ValueCallback;
 
 public class Portal extends Activity {
 
-    private WebView myWebView;
+    private WebView web_view;
     private final String android_address = "http://www.ballsapp.com/and/";
 
     @Override
@@ -29,18 +17,19 @@ public class Portal extends Activity {
 
         setContentView(R.layout.activity_portal);
 
-        myWebView = (WebView) findViewById(R.id.webview);
-        myWebView.setWebViewClient(new WebViewClient());
-        myWebView.loadUrl(android_address);
+        web_view = (WebView) findViewById(R.id.webview);
+        web_view.setWebViewClient(new WebViewClient());
+        web_view.addJavascriptInterface(new WebAppInterface(this, web_view), "BallsAppAndroid");
+        web_view.loadUrl(android_address);
 
-        WebSettings webSettings = myWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+        WebSettings web_settings = web_view.getSettings();
+        web_settings.setJavaScriptEnabled(true);
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        myWebView.loadUrl(android_address);
+        web_view.loadUrl(android_address);
     }
 }
