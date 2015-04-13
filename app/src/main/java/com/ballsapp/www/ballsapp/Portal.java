@@ -21,6 +21,7 @@ import android.webkit.ValueCallback;
 public class Portal extends Activity {
 
     private WebView myWebView;
+    private final String android_address = "http://www.ballsapp.com/and/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class Portal extends Activity {
 
         myWebView = (WebView) findViewById(R.id.webview);
         myWebView.setWebViewClient(new WebViewClient());
-        myWebView.loadUrl("http://www.ballsapp.com");
+        myWebView.loadUrl(android_address);
 
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -40,6 +41,6 @@ public class Portal extends Activity {
     public void onResume() {
         super.onResume();
 
-        myWebView.loadUrl("http://www.ballsapp.com");
+        myWebView.loadUrl(android_address);
     }
 }
